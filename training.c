@@ -3,77 +3,77 @@
 #include <math.h>
 #include <string.h>
 
-#define MAX_COLUMNS 7
-#define MAX_VERI_SAYISI 1600
-#define LEARNING_RATE 0.01
-#define TOLERANCE 0.0001
-#define EPOCHS 157
-#define MAX_TEST_VERI_SAYISI 400
+#define MAX_COLUMNS 6
+#define MAX_TRAIN_DATA_NUMBER 50103
+#define LEARNING_RATE 0.05
+#define EPOCHS 500
+#define MAX_TEST_DATA_NUMBER 12526
 
-float train_veri[MAX_VERI_SAYISI][MAX_COLUMNS];
-float test_veri[MAX_TEST_VERI_SAYISI][MAX_COLUMNS];
-int veri_sayisi = 0;
-int test_veri_sayisi = 0;
+float train_data[MAX_TRAIN_DATA_NUMBER][MAX_COLUMNS];
+float test_data[MAX_TEST_DATA_NUMBER][MAX_COLUMNS];
+int train_data_number = 0;
+int test_data_number = 0;
 float weights[MAX_COLUMNS] = {0}; 
 
-void veriOku(const char *dosyaYolu)
-{
-    FILE *dosya = fopen(dosyaYolu, "r");
 
-    if (dosya == NULL)
+void readTrainData(const char *filePath)
+{
+    FILE *file = fopen(filePath, "r");
+
+    if (file == NULL)
     {
-        perror("Dosya açılırken hata oluştu");
+        perror("An error occurred while opening the file");
         exit(EXIT_FAILURE);
     }
 
-    char satir[MAX_VERI_SAYISI];
+    char row[MAX_TRAIN_DATA_NUMBER];
     char *token;
     int i;
 
-    while (fgets(satir, sizeof(satir), dosya) && veri_sayisi < MAX_VERI_SAYISI)
+    while (fgets(row, sizeof(row), file) && train_data_number < MAX_TRAIN_DATA_NUMBER)
     {
         i = 0;
-        token = strtok(satir, " ");
+        token = strtok(row, " ");
         while (token != NULL && i < MAX_COLUMNS)
         {
-            train_veri[veri_sayisi][i] = atof(token);
+            train_data[train_data_number][i] = atof(token);
             token = strtok(NULL, " ");
             i++;
         }
-        veri_sayisi++;
+        train_data_number++;
     }
 
-    fclose(dosya);
+    fclose(file);
 }
 
-void veriTestOku(const char *dosyaYolu)
+void readTestData(const char *filePath)
 {
-    FILE *dosya = fopen(dosyaYolu, "r");
+    FILE *file = fopen(filePath, "r");
 
-    if (dosya == NULL)
+    if (file == NULL)
     {
-        perror("Dosya açılırken hata oluştu");
+        perror("An error occurred while opening the file");
         exit(EXIT_FAILURE);
     }
 
-    char satir[MAX_TEST_VERI_SAYISI];
+    char satir[MAX_TEST_DATA_NUMBER];
     char *token;
     int i;
 
-    while (fgets(satir, sizeof(satir), dosya) && test_veri_sayisi < MAX_TEST_VERI_SAYISI)
+    while (fgets(satir, sizeof(satir), file) && test_data_number < MAX_TEST_DATA_NUMBER)
     {
         i = 0;
         token = strtok(satir, " ");
         while (token != NULL && i < MAX_COLUMNS)
         {
-            test_veri[test_veri_sayisi][i] = atof(token);
+            test_data[test_data_number][i] = atof(token);
             token = strtok(NULL, " ");
             i++;
         }
-        test_veri_sayisi++;
+        test_data_number++;
     }
 
-    fclose(dosya);
+    fclose(file);
 }
 
 
@@ -82,113 +82,180 @@ float sigmoid(float z)
     return 1.0 / (1.0 + exp(-z));
 }
 
-void egitim_dogrulugu_hesapla(int epoch)
+float calculateTrainAcc(int epoch)
 {
-    int dogru_tahmin = 0;
-    for (int i = 0; i < veri_sayisi; i++)
+    int true_pred = 0;
+    for (int i = 0; i < train_data_number; i++)
     {
         float prediction = 0;
         for (int j = 0; j < MAX_COLUMNS - 1; j++)
         {
-            prediction += train_veri[i][j] * weights[j];
+            prediction += train_data[i][j] * weights[j];
         }
         float h = sigmoid(prediction);
         int tahmin = h >= 0.5 ? 1.000000 : 0.000000; 
 
-        if (tahmin == train_veri[i][MAX_COLUMNS - 1])
+        if (tahmin == train_data[i][MAX_COLUMNS - 1])
         {
-            dogru_tahmin++;
+            true_pred++;
         }
     }
 
-    float dogruluk = (float)dogru_tahmin / veri_sayisi * 100;
-    printf("%d. Epoch sonu eğitim doğruluğu: %.2f%%\n", epoch, dogruluk);
+    float acc = (float)true_pred / train_data_number * 100;
+    printf("%d. Epoch Accuracy : %.2f%%\n", epoch, acc);
+    return acc;
 }
 
-
-void egit_lojistik_regresyon()
+void trainLogReg()
 {
- 
+    float max_acc = 0;
+    float acc = 0;
+    float mse = 0;
+    float min_mse = HUGE_VALF;
+    int max_epoch = 0;
+    float max_weights[MAX_COLUMNS] = {0};
+
     for (int epoch = 0; epoch < EPOCHS; epoch++)
     {
-
-        for (int i = 0; i < veri_sayisi; i++)
+        for (int i = 0; i < train_data_number; i++)
         {
             float prediction = 0;
             for (int j = 0; j < MAX_COLUMNS - 1; j++)
             {
-                prediction += train_veri[i][j] * weights[j];
+                prediction += train_data[i][j] * weights[j];
             }
             float h = sigmoid(prediction);
-            float error = train_veri[i][MAX_COLUMNS - 1] - h;
+            float error = train_data[i][MAX_COLUMNS - 1] - h;
 
             for (int j = 0; j < MAX_COLUMNS - 1; j++)
             {
-                weights[j] += LEARNING_RATE * error * train_veri[i][j];
+                weights[j] += LEARNING_RATE * error * train_data[i][j];
             }
+        }
+ 
+        float total_squared_error = 0;
+        for (int i = 0; i < train_data_number; i++)
+        {
+            float prediction = 0;
+            for (int j = 0; j < MAX_COLUMNS - 1; j++)
+            {
+                prediction += train_data[i][j] * weights[j];
+            }
+            float h = sigmoid(prediction);
+            float squared_error = pow(train_data[i][MAX_COLUMNS - 1] - h, 2); // Kare hata hesabı
+            total_squared_error += squared_error; // Toplam kare hataya ekleniyor.
         }
         
-        // Hata toleransına ulaşıldığında eğitimi durdurma
-        float total_error = 0;
-        for (int i = 0; i < veri_sayisi; i++)
+        mse = total_squared_error / train_data_number;
+
+        acc = calculateTrainAcc(epoch);
+        mse = total_squared_error / train_data_number;
+        if(acc > max_acc)
         {
-            float prediction = 0;
-            for (int j = 0; j < MAX_COLUMNS - 1; j++)
-            {
-                prediction += train_veri[i][j] * weights[j];
-            }
-            float h = sigmoid(prediction);
-            total_error += fabs(train_veri[i][MAX_COLUMNS - 1] - h);
+            max_acc = acc;
+            max_epoch = epoch;
+            min_mse = mse;
+            memcpy(max_weights, weights, sizeof(weights));
         }
-        if (total_error < TOLERANCE)
-        {
-            printf("Hata toleransı %f'e ulaşıldı. Eğitim sona erdi.\n", TOLERANCE);
-            break;
-        }
-        egitim_dogrulugu_hesapla(epoch);
     }
 
-    // Eğitim sonucunda elde edilen ağırlıkları yazdırma
-    printf("Eğitim tamamlandı. Elde edilen ağırlıklar:\n");
+    FILE *file = fopen("TrainResults.txt", "w");
+    if (file == NULL)
+    {
+        perror("An error occurred while creating the file");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(file, "Min Loss : %.6f\n", min_mse);
+    fprintf(file, "Max Epoch : %d\n", max_epoch);
+    fprintf(file, "Max Accuracy : %.2f%%\n", max_acc);
+    fprintf(file, "Max Weights : \n");
     for (int j = 0; j < MAX_COLUMNS - 1; j++)
     {
-        printf("W%d: %.6f\n", j + 1, weights[j]);
+        fprintf(file, "W%d: %.6f\n", j + 1, max_weights[j]);
     }
+
+    fclose(file);
+        
 }
 
-
-void test_et()
+void test()
 {
-    int dogru_tahmin = 0;
-    for (int i = 0; i < test_veri_sayisi; i++)
+    int true_pred = 0;
+    int false_pred = 0;
+    int true_positive = 0;
+    int false_negative = 0;
+    int true_negative = 0;
+    int false_positive = 0;
+    float total_squared_error = 0;
+    
+    for (int i = 0; i < test_data_number; i++)
     {
         float prediction = 0;
         for (int j = 0; j < MAX_COLUMNS - 1; j++)
         {
-            prediction += test_veri[i][j] * weights[j];
+            prediction += test_data[i][j] * weights[j];
         }
         float h = sigmoid(prediction);
-        int tahmin = h >= 0.5 ? 1.000000 : 0.000000; 
-        if (tahmin == test_veri[i][MAX_COLUMNS - 1])
+        float squared_error = pow(test_data[i][MAX_COLUMNS - 1] - h, 2); // Kare hata hesabı
+        total_squared_error += squared_error; // Toplam kare hataya ekleniyor.
+        int pred = h >= 0.5 ? 1 : 0;
+        
+        if (pred == test_data[i][MAX_COLUMNS - 1])
         {
-            dogru_tahmin++;
+            true_pred++;
+            if (pred == 1)
+                true_positive++;
+            else
+                true_negative++;
+        }
+        else
+        {
+            false_pred++;
+            if (pred == 1)
+                false_positive++;
+            else
+                false_negative++;
         }
     }
-    float accuracy = (float)dogru_tahmin / test_veri_sayisi * 100;
-    printf("Test doğruluğu: %.2f%%\n", accuracy);
-    printf("Doğru tahmin sayisi : %d\n", dogru_tahmin);
-    printf("test veri sayisi : %d", test_veri_sayisi);
+    
+    float accuracy = (float)true_pred / (true_pred + false_pred) * 100;
+    float precision = (float)true_positive / (true_positive + false_positive);
+    float recall = (float)true_positive / (true_positive + false_negative);
+    float f1_score = 2 * (precision * recall) / (precision + recall);
+    float mse = total_squared_error / test_data_number;
+        
+    FILE *file = fopen("TestResults.txt", "w");
+    if (file == NULL)
+    {
+        perror("An error occurred while creating the file");
+        exit(EXIT_FAILURE);
+    }
+    fprintf(file, "Test Accuracy : %.2f%%\n", accuracy);
+    fprintf(file, "True Prediction Number : %d\n", true_pred);
+    fprintf(file, "Precision: %.2f\n", precision);
+    fprintf(file, "Recall: %.2f\n", recall);
+    fprintf(file, "F1 Score: %.2f\n", f1_score);
+    fprintf(file, "MSE: %.6f\n", mse);
+    fprintf(file, "\n\n");
+    fprintf(file, "\t\tConfusion Matrix:\n\n");
+    fprintf(file, "%20s %10s %10s\n", " ", "Predicted 0", "Predicted 1");
+    fprintf(file, "%20s %10d %10d\n", "Actual 0", true_negative, false_positive);
+    fprintf(file, "%20s %10d %10d\n", "Actual 1", false_negative, true_positive);
+
+    fclose(file);
 }
+
 int main()
 {
-    const char *dosyaYolu = "datasets/train_smoke_detection_iot.csv";
-    veriOku(dosyaYolu);
+    const char *filePathTrain = "dataset/train_smoke_detection_iot.csv";
+    readTrainData(filePathTrain);
 
-    const char *testDosyaYolu = "datasets/test_smoke_detection_iot.csv";
-    veriTestOku(testDosyaYolu);
+    const char *filePathTest = "dataset/test_smoke_detection_iot.csv";
+    readTestData(filePathTest);
 
-    egit_lojistik_regresyon();
-    test_et();
+    trainLogReg();
+    test();
 
     return EXIT_SUCCESS;
 }

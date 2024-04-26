@@ -3,10 +3,10 @@
 #include <string.h>
 #include <time.h>
 
-#define MAX_LINE_LENGTH 2000
+#define MAX_LINE_LENGTH 62629
 #define MAX_COLUMNS 16
-#define MAX_VERI_SAYISI 2000
-#define MAX_YENI_COLUMNS (MAX_COLUMNS - 9)
+#define MAX_VERI_SAYISI 62629
+#define MAX_YENI_COLUMNS (MAX_COLUMNS - 10)
 #define TRAIN_PERCENTAGE 80
 
 void shuffle(float yeni_veri[][MAX_YENI_COLUMNS], int veri_sayisi)
@@ -24,9 +24,9 @@ void shuffle(float yeni_veri[][MAX_YENI_COLUMNS], int veri_sayisi)
 
 int main()
 {
-    FILE *dosya = fopen("datasets/smoke_detection_iot.csv", "r");
-    FILE *train_dosya = fopen("datasets/train_smoke_detection_iot.csv", "w");
-    FILE *test_dosya = fopen("datasets/test_smoke_detection_iot.csv", "w");
+    FILE *dosya = fopen("dataset/smoke_detection_iot.csv", "r");
+    FILE *train_dosya = fopen("dataset/train_smoke_detection_iot.csv", "w");
+    FILE *test_dosya = fopen("dataset/test_smoke_detection_iot.csv", "w");
 
     if (dosya == NULL || train_dosya == NULL || test_dosya == NULL)
     {
@@ -47,7 +47,7 @@ int main()
         int yeni_index = 0;
         while (token != NULL && i < MAX_COLUMNS)
         {
-            if (i != 0 && i != 1 && i != 4 && i != 9 && i != 10 && i != 11 && i != 12 && i != 13 && i != 14)
+            if (i != 0 && i != 1 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && i != 12 && i != 13 && i != 14)
             {
                 yeni_veri[veri_sayisi][yeni_index] = atof(token);
                 yeni_index++;
@@ -93,10 +93,9 @@ int main()
     int deger_sayisi[2] = {0};
     for (int i = 0; i < veri_sayisi; i++)
     {
-
-        if (yeni_veri[i][6] == 0.000000 || yeni_veri[i][6] == 1.000000)
+        if (yeni_veri[i][MAX_YENI_COLUMNS - 1] == 0.000000 || yeni_veri[i][MAX_YENI_COLUMNS - 1] == 1.000000)
         {
-            deger_sayisi[(int)yeni_veri[i][6]]++;
+            deger_sayisi[(int)yeni_veri[i][MAX_YENI_COLUMNS - 1]]++;
         }
     }
     printf("Label sütundaki değer sayısı:\n");
