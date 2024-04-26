@@ -5,106 +5,106 @@
 
 #define MAX_LINE_LENGTH 62629
 #define MAX_COLUMNS 16
-#define MAX_VERI_SAYISI 62629
-#define MAX_YENI_COLUMNS (MAX_COLUMNS - 10)
+#define MAX_DATA_NUMBER 62629
+#define MAX_NEW_COLUMNS (MAX_COLUMNS - 10)
 #define TRAIN_PERCENTAGE 80
 
-void shuffle(float yeni_veri[][MAX_YENI_COLUMNS], int veri_sayisi)
+void shuffle(float new_data[][MAX_NEW_COLUMNS], int data_number)
 {
     srand(time(NULL)); 
-    for (int i = veri_sayisi - 1; i > 0; i--)
+    for (int i = data_number - 1; i > 0; i--)
     {
         int j = rand() % (i + 1); 
-        float temp[MAX_YENI_COLUMNS];
-        memcpy(temp, yeni_veri[i], MAX_YENI_COLUMNS * sizeof(float));
-        memcpy(yeni_veri[i], yeni_veri[j], MAX_YENI_COLUMNS * sizeof(float));
-        memcpy(yeni_veri[j], temp, MAX_YENI_COLUMNS * sizeof(float));
+        float temp[MAX_NEW_COLUMNS];
+        memcpy(temp, new_data[i], MAX_NEW_COLUMNS * sizeof(float));
+        memcpy(new_data[i], new_data[j], MAX_NEW_COLUMNS * sizeof(float));
+        memcpy(new_data[j], temp, MAX_NEW_COLUMNS * sizeof(float));
     }
 }
 
 int main()
 {
-    FILE *dosya = fopen("dataset/smoke_detection_iot.csv", "r");
-    FILE *train_dosya = fopen("dataset/train_smoke_detection_iot.csv", "w");
-    FILE *test_dosya = fopen("dataset/test_smoke_detection_iot.csv", "w");
+    FILE *file = fopen("dataset/smoke_detection_iot.csv", "r");
+    FILE *trainFile = fopen("dataset/train_smoke_detection_iot.csv", "w");
+    FILE *testFile = fopen("dataset/test_smoke_detection_iot.csv", "w");
 
-    if (dosya == NULL || train_dosya == NULL || test_dosya == NULL)
+    if (file == NULL || trainFile == NULL || testFile == NULL)
     {
-        perror("Dosya açılırken hata oluştu");
+        perror("An error occurred while opening the file");
         return EXIT_FAILURE;
     }
 
-    char satir[MAX_LINE_LENGTH];
-    float yeni_veri[MAX_VERI_SAYISI][MAX_YENI_COLUMNS];
-    int veri_sayisi = 0;
+    char row[MAX_LINE_LENGTH];
+    float new_data[MAX_DATA_NUMBER][MAX_NEW_COLUMNS];
+    int data_number = 0;
 
-    fgets(satir, sizeof(satir), dosya); 
+    fgets(row, sizeof(row), file); 
 
-    while (fgets(satir, sizeof(satir), dosya) && veri_sayisi < MAX_VERI_SAYISI)
+    while (fgets(row, sizeof(row), file) && data_number < MAX_DATA_NUMBER)
     {
         int i = 0;
-        char *token = strtok(satir, ",");
-        int yeni_index = 0;
+        char *token = strtok(row, ",");
+        int new_index = 0;
         while (token != NULL && i < MAX_COLUMNS)
         {
             if (i != 0 && i != 1 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && i != 12 && i != 13 && i != 14)
             {
-                yeni_veri[veri_sayisi][yeni_index] = atof(token);
-                yeni_index++;
+                new_data[data_number][new_index] = atof(token);
+                new_index++;
             }
             token = strtok(NULL, ",");
             i++;
         }
-        veri_sayisi++;
+        data_number++;
     }
 
-    shuffle(yeni_veri, veri_sayisi); 
+    shuffle(new_data, data_number); 
 
-    int train_sayisi = veri_sayisi * TRAIN_PERCENTAGE / 100;
+    int train_number = data_number * TRAIN_PERCENTAGE / 100;
 
   
-    for (int k = 0; k < train_sayisi; k++)
+    for (int k = 0; k < train_number; k++)
     {
-        for (int j = 0; j < MAX_YENI_COLUMNS; j++)
+        for (int j = 0; j < MAX_NEW_COLUMNS; j++)
         {
-            fprintf(train_dosya, "%f", yeni_veri[k][j]);
-            if (j < MAX_YENI_COLUMNS - 1)
+            fprintf(trainFile, "%f", new_data[k][j]);
+            if (j < MAX_NEW_COLUMNS - 1)
             {
-                fprintf(train_dosya, " "); 
+                fprintf(trainFile, " "); 
             }
         }
-        fprintf(train_dosya, "\n"); 
+        fprintf(trainFile, "\n"); 
     }
 
  
-    for (int k = train_sayisi; k < veri_sayisi; k++)
+    for (int k = train_number; k < data_number; k++)
     {
-        for (int j = 0; j < MAX_YENI_COLUMNS; j++)
+        for (int j = 0; j < MAX_NEW_COLUMNS; j++)
         {
-            fprintf(test_dosya, "%f", yeni_veri[k][j]);
-            if (j < MAX_YENI_COLUMNS - 1)
+            fprintf(testFile, "%f", new_data[k][j]);
+            if (j < MAX_NEW_COLUMNS - 1)
             {
-                fprintf(test_dosya, " "); 
+                fprintf(testFile, " "); 
             }
         }
-        fprintf(test_dosya, "\n"); 
+        fprintf(testFile, "\n"); 
     }
 
-    int deger_sayisi[2] = {0};
-    for (int i = 0; i < veri_sayisi; i++)
+    int value_label[2] = {0};
+    for (int i = 0; i < data_number; i++)
     {
-        if (yeni_veri[i][MAX_YENI_COLUMNS - 1] == 0.000000 || yeni_veri[i][MAX_YENI_COLUMNS - 1] == 1.000000)
+        if (new_data[i][MAX_NEW_COLUMNS - 1] == 0.000000 || new_data[i][MAX_NEW_COLUMNS - 1] == 1.000000)
         {
-            deger_sayisi[(int)yeni_veri[i][MAX_YENI_COLUMNS - 1]]++;
+            value_label[(int)new_data[i][MAX_NEW_COLUMNS - 1]]++;
         }
     }
-    printf("Label sütundaki değer sayısı:\n");
-    printf("Label 0: %d\n", deger_sayisi[0]);
-    printf("Label 1: %d\n", deger_sayisi[1]);
+    printf("Label value number:\n");
+    printf("Label 0: %d\n", value_label[0]);
+    printf("Label 1: %d\n", value_label[1]);
 
-    fclose(dosya);
-    fclose(train_dosya);
-    fclose(test_dosya);
+    fclose(file);
+    fclose(trainFile);
+    fclose(testFile);
 
     return EXIT_SUCCESS;
 }
