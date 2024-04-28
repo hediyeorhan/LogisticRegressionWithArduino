@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 
 #define MAX_COLUMNS 6
 #define MAX_TRAIN_DATA_NUMBER 50103
@@ -13,7 +14,7 @@ float train_data[MAX_TRAIN_DATA_NUMBER][MAX_COLUMNS];
 float test_data[MAX_TEST_DATA_NUMBER][MAX_COLUMNS];
 int train_data_number = 0;
 int test_data_number = 0;
-float weights[MAX_COLUMNS] = {0}; 
+float weights[MAX_COLUMNS-1] = {0}; 
 
 
 void readTrainData(const char *filePath)
@@ -76,6 +77,14 @@ void readTestData(const char *filePath)
     fclose(file);
 }
 
+void initializeWeights()
+{
+    srand(time(NULL));
+    for (int i = 0; i < MAX_COLUMNS - 1; i++)
+    {
+        weights[i] = ((float)rand() / RAND_MAX) - 0.5;
+    }
+}
 
 float sigmoid(float z)
 {
@@ -113,7 +122,9 @@ void trainLogReg()
     float mse = 0;
     float min_mse = HUGE_VALF;
     int max_epoch = 0;
-    float max_weights[MAX_COLUMNS] = {0};
+    float max_weights[MAX_COLUMNS-1] = {0};
+
+    initializeWeights();
 
     for (int epoch = 0; epoch < EPOCHS; epoch++)
     {
@@ -255,6 +266,7 @@ int main()
     readTestData(filePathTest);
 
     trainLogReg();
+    
     test();
 
     return EXIT_SUCCESS;

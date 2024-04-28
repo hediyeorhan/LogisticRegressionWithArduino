@@ -14,21 +14,21 @@
 
 Adafruit_BME280 bme;
 
-// Optimum ağırlık değerlerini tanımlayın
-float weights[5] = { -131960.656250, 597871.125000, 30257.791016, -19310.861328, -37382.253906 };
+// Opt weights value
+float weights[5] = { -132726.359375, 594259.437500, 29896.300781, -19057.396484, -37417.539062 };
 float temp, press, humidity, h2, ethanol;
 float sensorData[5];
 int timer = 0;
 int predictionResult;
 float h;
 
-// Sigmoid fonksiyonu
+// Sigmoid func
 float sigmoid(float z) {
   return 1.0 / (1.0 + exp(-z));
 }
 
 void setup() {
-  // Sensörlerinizin bağlantılarını yapın
+  // Sensörler connect
   Serial.begin(9600);
   bme.begin();
   pinMode(led1, OUTPUT);
@@ -37,11 +37,11 @@ void setup() {
 
   cli();
 
-  // Timer1 kesmesi ayarlanıyor
+  // Timer1 interrupt
   TCNT1 = 0;
   TCCR1A = 0;
   TCCR1B = 0;
-  OCR1A = 15624;  // Bir saniye çalışması için gerekli zaman kesmesi frekansı
+  OCR1A = 15624;  
   TCCR1B |= (1 << WGM12);
   TCCR1B |= (1 << CS12) | (1 << CS10);
   TIMSK1 |= (1 << OCIE1A);
@@ -59,7 +59,7 @@ ISR(TIMER1_COMPA_vect) {
     h = sigmoid(prediction);
     predictionResult = h >= 0.5 ? 1 : 0;
 
-    Serial.print("\nTahmin: ");
+    Serial.print("\nPrediction: ");
     Serial.println(predictionResult);
 
     if (predictionResult == 1) {
