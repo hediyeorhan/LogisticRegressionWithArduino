@@ -50,7 +50,7 @@ void setup() {
 
 ISR(TIMER1_COMPA_vect) {
   timer++;
-  if (timer == 180) {
+  if (timer == 300) {
     float prediction = 0;
     for (int j = 0; j < 5; j++) {
       Serial.println(sensorData[j]);
