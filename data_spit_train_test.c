@@ -3,18 +3,17 @@
 #include <string.h>
 #include <time.h>
 
-#define MAX_LINE_LENGTH 62629
-#define MAX_COLUMNS 16
-#define MAX_DATA_NUMBER 62629
-#define MAX_NEW_COLUMNS (MAX_COLUMNS - 10)
+#define MAX_LINE_LENGTH 35744
+#define MAX_DATA_NUMBER 35744
+#define MAX_NEW_COLUMNS 6
 #define TRAIN_PERCENTAGE 80
 
 void shuffle(float new_data[][MAX_NEW_COLUMNS], int data_number)
 {
-    srand(time(NULL)); 
+    srand(time(NULL));
     for (int i = data_number - 1; i > 0; i--)
     {
-        int j = rand() % (i + 1); 
+        int j = rand() % (i + 1);
         float temp[MAX_NEW_COLUMNS];
         memcpy(temp, new_data[i], MAX_NEW_COLUMNS * sizeof(float));
         memcpy(new_data[i], new_data[j], MAX_NEW_COLUMNS * sizeof(float));
@@ -24,7 +23,7 @@ void shuffle(float new_data[][MAX_NEW_COLUMNS], int data_number)
 
 int main()
 {
-    FILE *file = fopen("dataset/smoke_detection_iot.csv", "r");
+    FILE *file = fopen("dataset/smoke_detection_iot_equal.csv", "r");
     FILE *trainFile = fopen("dataset/train_smoke_detection_iot.csv", "w");
     FILE *testFile = fopen("dataset/test_smoke_detection_iot.csv", "w");
 
@@ -38,31 +37,29 @@ int main()
     float new_data[MAX_DATA_NUMBER][MAX_NEW_COLUMNS];
     int data_number = 0;
 
-    fgets(row, sizeof(row), file); 
+    fgets(row, sizeof(row), file);
 
     while (fgets(row, sizeof(row), file) && data_number < MAX_DATA_NUMBER)
     {
         int i = 0;
         char *token = strtok(row, ",");
         int new_index = 0;
-        while (token != NULL && i < MAX_COLUMNS)
+        while (token != NULL && i < MAX_NEW_COLUMNS)
         {
-            if (i != 0 && i != 1 && i != 4 && i != 5 && i != 9 && i != 10 && i != 11 && i != 12 && i != 13 && i != 14)
-            {
-                new_data[data_number][new_index] = atof(token);
-                new_index++;
-            }
+
+            new_data[data_number][new_index] = atof(token);
+            new_index++;
+
             token = strtok(NULL, ",");
             i++;
         }
         data_number++;
     }
 
-    shuffle(new_data, data_number); 
+    shuffle(new_data, data_number);
 
     int train_number = data_number * TRAIN_PERCENTAGE / 100;
 
-  
     for (int k = 0; k < train_number; k++)
     {
         for (int j = 0; j < MAX_NEW_COLUMNS; j++)
@@ -70,13 +67,12 @@ int main()
             fprintf(trainFile, "%f", new_data[k][j]);
             if (j < MAX_NEW_COLUMNS - 1)
             {
-                fprintf(trainFile, " "); 
+                fprintf(trainFile, " ");
             }
         }
-        fprintf(trainFile, "\n"); 
+        fprintf(trainFile, "\n");
     }
 
- 
     for (int k = train_number; k < data_number; k++)
     {
         for (int j = 0; j < MAX_NEW_COLUMNS; j++)
@@ -84,10 +80,10 @@ int main()
             fprintf(testFile, "%f", new_data[k][j]);
             if (j < MAX_NEW_COLUMNS - 1)
             {
-                fprintf(testFile, " "); 
+                fprintf(testFile, " ");
             }
         }
-        fprintf(testFile, "\n"); 
+        fprintf(testFile, "\n");
     }
 
     int value_label[2] = {0};
