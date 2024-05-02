@@ -15,7 +15,7 @@
 Adafruit_BME280 bme;
 
 // Opt weights value
-float weights[5] = { -136209.609375, 581862.562500, 30500.689453, -19397.369141, -38398.601562 };
+float weights[5] = { -101525.070312, 838507.437500, 33512.832031, -22925.138672, -21841.412109 };
 float temp, press, humidity, h2, ethanol;
 float sensorData[5];
 int timer = 0;
