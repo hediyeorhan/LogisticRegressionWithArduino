@@ -15,7 +15,7 @@ float test_data[MAX_TEST_DATA_NUMBER][MAX_COLUMNS];
 int train_data_number = 0;
 int test_data_number = 0;
 float weights[MAX_COLUMNS-1] = {0}; 
-
+float max_weights[MAX_COLUMNS-1] = {0};
 
 void readTrainData(const char *filePath)
 {
@@ -122,8 +122,7 @@ void trainLogReg()
     float mse = 0;
     float min_mse = HUGE_VALF;
     int max_epoch = 0;
-    float max_weights[MAX_COLUMNS-1] = {0};
-
+    
     initializeWeights();
 
     for (int epoch = 0; epoch < EPOCHS; epoch++)
@@ -205,7 +204,7 @@ void test()
         float prediction = 0;
         for (int j = 0; j < MAX_COLUMNS - 1; j++)
         {
-            prediction += test_data[i][j] * weights[j];
+            prediction += test_data[i][j] * max_weights[j];
         }
         float h = sigmoid(prediction);
         float squared_error = pow(test_data[i][MAX_COLUMNS - 1] - h, 2); // Kare hata hesabı

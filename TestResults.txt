@@ -1,13 +1,13 @@
-Test Accuracy : 84.23%
-True Prediction Number : 10551
+Test Accuracy : 84.61%
+True Prediction Number : 10598
 Precision: 0.81
 Recall: 1.00
-F1 Score: 0.89
-MSE: 0.157672
+F1 Score: 0.90
+MSE: 0.153920
 
 
 		Confusion Matrix:
 
                      Predicted 0 Predicted 1
-            Actual 0       2137       1962
+            Actual 0       2184       1915
             Actual 1         13       8414

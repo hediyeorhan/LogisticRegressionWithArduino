@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net" modified="2024-05-02T08:24:05.406Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="tKfZa8HlRnFP9_cJt2dr" version="24.3.1" type="device">
+  <diagram name="Sayfa -1" id="3mwLuMS9LJfRFCeNIuNK">
+    <mxGraphModel dx="880" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2336" pageHeight="1654" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-1" value="BAŞLA" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="160" y="40" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-2" value="Veri seti oku" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="130" y="100" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-3" value="Veri setindeki kullanılacak özellikleri seç" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="145" y="200" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-4" value="Veri setini %80 eğitim, %20 test olarak böl" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="145" y="320" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-5" value="Eğitim verilerini Lojistik Regresyon algoritması ile 500 devirde eğit.&lt;div style=&quot;font-size: 13px;&quot;&gt;Her devirde doğruluk ve kayıp değerlerini hesapla&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="145" y="440" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-6" value="Maksimum doğruluk elde edilen devirdeki ağırlık değerlerini, devir sayısını ve kayıp değerini txt dosyasına kayıt et" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="145" y="557" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-7" value="Maksimum doğruluk elde edilen ağırlık değerleri ile test verilerini tahmin et" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="145" y="680" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-8" value="Test verilerinden elde edilen performans metrikleri ve karışıklık matrisi verilerini txt dosyasına kayıt et" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="310" y="680" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-9" value="Elde edilen ağırlık değerlerini Arduino kodunda tanımla" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="475" y="680" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-11" value="Sensörden gelen verileri Arduino&#39;da oku" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="460" y="577" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-12" value="Sensörden gelen verileri tanımlanan ağırlık değerlerini kullanarak 5dk aralıklar ile tahmin et" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="475" y="454" width="140" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-13" value="Tahmin == 1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="481.25" y="310" width="127.5" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-14" value="Buzzer aç &amp;amp;&lt;div style=&quot;font-size: 13px;&quot;&gt;Kırmızı led yak&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="475" y="190" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-15" value="Yeşil led yak" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="630" y="320" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-16" value="SON" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;fontFamily=Times New Roman;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="481.25" y="130" width="112.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-17" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="80" as="sourcePoint" />
+            <mxPoint x="214.5" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-18" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="180" as="sourcePoint" />
+            <mxPoint x="214.5" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-28" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="540" as="sourcePoint" />
+            <mxPoint x="214.5" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-29" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="420" as="sourcePoint" />
+            <mxPoint x="214.5" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-30" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="300" as="sourcePoint" />
+            <mxPoint x="214.5" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-34" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="285" y="729.5" as="sourcePoint" />
+            <mxPoint x="305" y="729.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-37" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="214.5" y="657" as="sourcePoint" />
+            <mxPoint x="214.5" y="677" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-40" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="729.5" as="sourcePoint" />
+            <mxPoint x="470" y="729.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-42" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="544.5" y="680" as="sourcePoint" />
+            <mxPoint x="544.5" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-44" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="544.5" y="190" as="sourcePoint" />
+            <mxPoint x="544.5" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-46" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="544.5" y="310" as="sourcePoint" />
+            <mxPoint x="544.5" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-47" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="544.5" y="454" as="sourcePoint" />
+            <mxPoint x="544.5" y="434" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-48" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="544.5" y="577" as="sourcePoint" />
+            <mxPoint x="544.5" y="557" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-49" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="608.75" y="369.5" as="sourcePoint" />
+            <mxPoint x="628.75" y="369.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-50" value="&lt;font style=&quot;font-size: 11px;&quot; color=&quot;#ffffff&quot;&gt;EVET&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=11;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="540" y="290" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-51" value="&lt;font style=&quot;font-size: 11px;&quot; color=&quot;#ffffff&quot;&gt;HAYIR&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Times New Roman;fontSize=11;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="580" y="340" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-52" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;fontFamily=Times New Roman;fontSize=13;verticalAlign=top;horizontal=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="150" as="sourcePoint" />
+            <mxPoint x="600" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kHM1_LNDT_ItOaU1rCxe-56" value="" style="endArrow=none;html=1;rounded=0;fontColor=#FFFFFF;verticalAlign=top;fontFamily=Times New Roman;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="kHM1_LNDT_ItOaU1rCxe-15" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="210" as="sourcePoint" />
+            <mxPoint x="700" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
