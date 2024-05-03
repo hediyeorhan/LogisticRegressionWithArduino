@@ -5,11 +5,12 @@ Proje, Arduino UNO [1] kartı ile geliştirilmiş bir gömülü sistem çalışm
 Geleneksel yangın tespit sistemleri genellikle sadece duman sensörlerine dayanırken, bu çalışma daha kapsamlı bir yaklaşım sunmaktadır. Hava basıncı, sıcaklık, nem, havadaki alkol ve H2 miktarı gibi çeşitli veri noktaları kullanılmıştır. Gelişen teknoloji ve makine öğrenimi tekniklerinin entegrasyonuyla sistem yangın tespitine daha hassas ve güvenilir bir şekilde oluşturulmuştur. Oluşturulan yangın tespit sisteminin Arduino üzerindeki sensör bağlantıları Şekil 1’de görülmektedir.
 Bu yaklaşımın, yangın riskini daha doğru bir şekilde belirlemesi ve yanlış alarm riskini azaltması hedeflenmektedir. Birden fazla verinin değerlendirilmesi ile yangın tespit sisteminin performansının artacağı düşünülmektedir.
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/c8fed516-54b9-4b3f-81d6-c438f9cc30cf)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/c8fed516-54b9-4b3f-81d6-c438f9cc30cf" alt="image">
 </div>
 <div align="center">
 Şekil 1. Oluşturulan yangın tespit sisteminin Arduino bağlantısı
 </div>
+<br>
 
 <h2> 2.	MATERYAL VE METOD </h2>
 
@@ -17,7 +18,7 @@ Bu yaklaşımın, yangın riskini daha doğru bir şekilde belirlemesi ve yanlı
 
 <h4> 2.1.1.  ARDUINO UNO </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/643b28e2-af8f-4ae0-b56d-58fb26e47b28)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/643b28e2-af8f-4ae0-b56d-58fb26e47b28" alt="image">
 </div>
 Arduino kartları arasında sıklıkla kullanılan kartlardan biridir. Bir sisteme entegre edilmesi kolay olduğu için pek çok kullanım alanları vardır. Akıllı ev sistemleri, robot sistemleri gibi gelişmiş sistemlerde kullanılabilmektedir. Onun haricinde okul projelerinde bireysel küçük çaplı projelerde de kullanım kolaylığı açısından tercih edilmektedir. Elektronik devrelerin kontrol edilmesini ve çalıştırılmasını sağlamaktadır [3] .
 • Dijital çıkış pini sayısı : 14
@@ -33,7 +34,7 @@ Arduino kartları arasında sıklıkla kullanılan kartlardan biridir. Bir siste
 
 <h4> 2.1.2.  MQ-3 SENSÖRÜ </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ff2ad49f-b450-445c-a291-4b9f75b6fa11)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ff2ad49f-b450-445c-a291-4b9f75b6fa11" alt="image">
 </div>
 MQ serisi gaz sensörleri içerisinde gazı algılamaya duyarlı bir tel, ısıtıcı eleman ve bir yük direnci bulunmaktadır. Çalışma prensipleri genel olarak aynıdır. MQ-3 sensörü özellikle etanol ölçümünde kullanılmaktadır. Alkollü buharı algılayabilmektedir. Analog direnç değerini, 0 ile 5V aralığına eş bir değere çevirmek için bir yük direnci kullanılmaktadır.
 
@@ -46,7 +47,7 @@ Yük direnci pini, Arduino’nun analog giriş pinlerinden birine bağlanarak Ar
 
 <h4> 2.1.3.  MQ-8 SENSÖRÜ </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/e1937708-85fc-4304-9e92-cca76123a037)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/e1937708-85fc-4304-9e92-cca76123a037" alt="image">
 </div>
 
 MQ serisi gaz sensörleri içerisinde gazı algılamaya duyarlı bir tel, ısıtıcı eleman ve bir yük direnci bulunmaktadır. Çalışma prensipleri genel olarak aynıdır. MQ-8 sensörü metan (CH4) gazı ölçümünde kullanılmaktadır. Çalışmada metan gazı ile benzerlikleri olduğu için hidrojen di oksit (H2) gazı ölçmek amacıyla kullanılmıştır. Analog direnç değerini, 0 ile 5V aralığına eş bir değere çevirmek için bir yük direnci kullanılmaktadır. Yük direnci pini, Arduino’nun analog giriş pinlerinden birine bağlanarak Arduino’ya bilgi aktarımı sağlanmaktadır. 
@@ -58,7 +59,7 @@ MQ serisi gaz sensörleri içerisinde gazı algılamaya duyarlı bir tel, ısıt
 
 <h4> 2.1.4.  BME280 SENSÖRÜ </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/d4b22154-b354-40f6-b794-885850b064c5)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/d4b22154-b354-40f6-b794-885850b064c5" alt="image">
 </div>
 
 BME280 sensörü, sıcaklık, nem ve basınç ölçümü yapabilen bir çevresel sensördür. İşlevselliği ve hassasiyeti nedeniyle hava kalitesi izleme, hava tahmini, iç mekan iklimlendirme ve diğer meteorolojik uygulamalarda yaygın olarak kullanılmaktadır.
@@ -69,7 +70,7 @@ BME280 sensörü, sıcaklık, nem ve basınç ölçümü yapabilen bir çevresel
 
 <h4> 2.1.5.  BUZZER </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/4a48dfb5-1b9c-47dd-ad9b-5f7ee9479e81)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/4a48dfb5-1b9c-47dd-ad9b-5f7ee9479e81" alt="image">
 </div>
 
 Geniş alanlara ses sinyalleri yaymaktadır. Projeye göre istenilen şartlar sağlandığında ses sinyalleri ile uyarı vermektedir. Alarm işlevi görmektedir.
@@ -80,7 +81,7 @@ Geniş alanlara ses sinyalleri yaymaktadır. Projeye göre istenilen şartlar sa
 
 <h4> 2.1.6.  LED </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/3d59d8d9-66fb-4f44-9c51-9705efa026d3)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/3d59d8d9-66fb-4f44-9c51-9705efa026d3" alt="image">
 </div>
 
 Elektrik enerjisini ışığa dönüştüren yarı iletken bir devre elemanıdır. Belirli miktarda voltaj verildiğinde etrafa ışık yaymaktadır. Projede yeşil ve kırmızı renkte ledler kullanılmıştır.
@@ -91,13 +92,13 @@ Elektrik enerjisini ışığa dönüştüren yarı iletken bir devre elemanıdı
 
 <h4> 2.1.7.  JUMPER KABLO </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ae449991-ee75-43fb-bfa7-0cb03131677e)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ae449991-ee75-43fb-bfa7-0cb03131677e" alt="image">
 </div>
 Arduino ve breadboard arasında bağlantı yapılmasını sağlamaktadır. Örnek olarak projede kullanım alanlarından biri; arduino üzerinden gelen 5V, jumper kablolar ile breadboard üzerine aktarılmıştır ve 5V pini bu şekilde çoğaltılmıştır.
 
 <h4> 2.1.8.  BREADBOARD </h4>
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/4c7c6d54-650a-4483-9653-d4ed0e8bdaef)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/4c7c6d54-650a-4483-9653-d4ed0e8bdaef" alt="image">
 </div>
 
 Teknik terim olarak devre tahtası olarak isimlendirilmektedir. Üzerine sensör bağlanarak arduino kartı ile sensörün bağlantısının sağlanmasında kullanılmaktadır.
@@ -113,7 +114,7 @@ Projede kullanılan arduino kodları Arduino IDE [4] ortamında yazılmıştır.
 Projenin geliştirilme aşamaları Şekil 2’de bulunan akış şemasında görülmektedir.
 
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/8e7c6b71-33f0-4caf-bb9b-8b46ff4ec4ea)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/8e7c6b71-33f0-4caf-bb9b-8b46ff4ec4ea" alt="image">
 </div>
 
 <div align="center">
@@ -135,27 +136,34 @@ Karışıklık matrisi, sınıflandırma algoritmalarının performansını değ
 • FP: Gerçek değerin 0 ancak tahmin edilen değerin 1 olduğu örneklerdir.
 • FN: Gerçek değerin 1 ancak tahmin edilen değerin 0 olduğu örneklerdir.
 
-Doğruluk değeri, doğru tahminlerin yüzdesel oranını belirtmektedir. Doğruluk değerinin hesaplanma formülü Denklem 2’de görülmektedir. 
+Doğruluk değeri, doğru tahminlerin yüzdesel oranını belirtmektedir. Doğruluk değerinin hesaplanma formülü Denklem 2’de görülmektedir.
+<br> 
 <div align="center">
 𝐷𝑜ğ𝑟𝑢𝑙𝑢𝑘= 𝑇𝑃+𝑇𝑁𝑇𝑃+𝑇𝑁+𝐹𝑃+𝐹𝑁∗100      (2)
 </div>
+<br>
 Kesinlik, pozitif olarak tahmin edilen değerlerin gerçekten kaç tanesinin pozitif olduğunu göstermektedir. Kesinlik değerinin hesaplanma formülü Denklem 3’te görülmektedir. 
+<br>
 <div align="center">
 𝐾𝑒𝑠𝑖𝑛𝑙𝑖𝑘= 𝑇𝑃𝑇𝑃+𝐹𝑃       (3)
 </div>
+<br>
 Hassasiyet ise pozitif olarak tahmin edilmesi gereken işlemlerin ne kadarının pozitif olarak tahmin edildiğini gösteren bir metriktir. Hassasiyet değerinin hesaplanma formülü Denklem 4’te görülmektedir. 
+<br>
 <div align="center">
 𝐻𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡= 𝑇𝑃𝑇𝑃+𝐹𝑁     (4)
 </div>
+<br>
 F1-skor değerinin kullanılmasının en temel sebebi eşit dağılmayan veri kümelerinde hatalı bir seçim yapmamaktır. Ayrıca sadece yanlış negatif ya da yanlış pozitif değil tüm hata maliyetlerini de içerecek bir ölçme metriğine ihtiyaç duyulduğu için F1-skor çok önemlidir. F1-skor değeri doğru pozitif, yanlış pozitif ve yanlış negatif değerleri ile hesaplanmaktadır. F1-skor değerinin hesaplanma formülü Denklem 5’te görülmektedir. 
+<br>
 <div align="center">
 𝐹1−𝑠𝑘𝑜𝑟=2∗ 𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘∗ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘+ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡       (5)
 </div>
-
+<br>
 Lojistik regresyon algoritmasının çalıştırılması tamamlandıktan ve sonuçlar elde edildikten sonra Arduino kartı ile sensör bağlantıları gerçekleştirilmiştir. Arduino kartı ve sensör bağlantılarının detaylı gösterimi Şekil 3’te görülmektedir.
 
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/6a64a7a7-a7bc-42e2-986e-b48d4994f593)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/6a64a7a7-a7bc-42e2-986e-b48d4994f593" alt="image">
 </div>
 
 <div align="center">
@@ -183,19 +191,19 @@ Lojistik regresyon algoritması 1000 iterasyon ve 0.05 öğrenme oranı ile çal
 <table>
     <tr>
         <td>
-            Doğruluk (%)
+            **Doğruluk (%)**
         </td>
         <td>
-            Kayıp 
+            **Kayıp**
         </td>
                 <td>
-            Kesinlik (%)
+            **Kesinlik (%)**
         </td>
         <td>
-            Hassasiyet 
+            **Hassasiyet (%)**
         </td>
                 <td>
-            F1-skor 
+            **F1-skor (%)**
         </td>
     </tr>
             <td>
@@ -221,7 +229,7 @@ Lojistik regresyon algoritması 1000 iterasyon ve 0.05 öğrenme oranı ile çal
 Test verileri kullanılarak hesaplanan karışıklık matrisi verileri görselleştirilmiştir. Oluşturulan karışıklık matrisi Şekil 5’te görülmektedir.
 
 <div align="center">
-![image](https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ae030fa7-946a-4357-9cba-e0f455ad6615)
+<img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/ae030fa7-946a-4357-9cba-e0f455ad6615" alt="image">
 </div>
 
 <div align="center">
@@ -235,7 +243,11 @@ Yangın tespiti için geliştirilen sistem, Arduino UNO kartı ve entegre sensö
 <h2> KAYNAKLAR </h2>
 
 [1] A. Datasheet. Available: https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf
+<br>
 [2] J. M. Hilbe, "Logistic regression," International encyclopedia of statistical science, vol. 1, pp. 15-32, 2011.
+<br>
 [3] M. Banzi and M. Shiloh, Getting started with Arduino: Maker Media, Inc., 2022.
+<br>
 [4] Arduino ide. Available: https://www.arduino.cc/en/software
+<br>
 [5] Smoke Detection. Available: https://www.kaggle.com/datasets/deepcontractor/smoke-detection-dataset
