@@ -127,7 +127,7 @@ Projede öncelikle veri seti araştırılması yapılmıştır. Arduino UNO kart
 Veri setinin ön işleme adımları tamamlandıktan sonra Lojistik regresyon algoritması C programlama dilli kullanılarak kodlanmıştır. Lojistik regresyon, bir sınıflandırma algoritmasıdır. İstatistik ve makine öğrenimi alanlarında sıkça kullanılan bir yöntemdir. Genellikle ikili sınıflandırma problemlerinde kullanılmaktadır. Lojistik regresyon, bağımsız değişkenlerin bir kombinasyonunu kullanarak bir bağımlı değişkenin olasılığını tahmin etmek için kullanılmaktadır. Lojistik regresyon, yüksek doğruluk ve yorumlanabilirlik sağlamaktadır, bu nedenle özellikle tıp, ekonomi, pazarlama ve diğer birçok alanda kullanılmaktadır. Lojistik regresyon sınıflandırma problemlerinde aktivasyon fonksiyonu olarak “sigmoid” kullanmaktadır. Aktivasyon fonksiyonu, bir yapay sinir ağı veya derin öğrenme modelinde bir nöronun çıktısını belirlemek için kullanılan bir matematiksel işlemdir. Sigmoid aktivasyon fonksiyonu verileri 0 ve 1 arasında sıkıştırmaktadır. Sigmoid fonksiyonundan elde edilen çıktı belirlenen eşit değerine göre “0” ve “1” sınıfına atanmaktadır. Sigmoid aktivasyon fonksiyonunun hesaplanma formülü Denklem 1’de görülmektedir. 
 <br>
 <div align="center">
-𝑆(𝑥)= 11+ 𝑒−𝑥       (1)
+𝑆(𝑥)= 1 / 1 + 𝑒^−𝑥       (1)
 </div>
 <br>
 Lojistik regresyonda, veri setindeki girdiler başlangıçta rastgele olarak tanımlanan ağırlık değerleri ile çarpılmaktadır. Her bir girdi ağırlık değerleri ile çarpılarak toplanmaktadır. Elde edilen bu toplam sigmoid fonksiyonuna gönderilmektedir. Sigmoid fonksiyonundan gelen sonuca göre sınıflandırma işlemi gerçekleşmektedir. Sonrasında elde edilen tahmin sonucu ve gerçek etiket değeri ile bir kayıp değeri hesaplanmaktadır. Hesaplanan kayıp değeri öğrenme oranı ve veri ile çarpılarak ağırlık değerleri güncellenmektedir. Öğrenme oranı, bir makine öğrenimi algoritmasında kullanılan bir hiper parametredir ve modelin ne kadar hızlı veya yavaş öğrenmesi gerektiğini belirlemektedir. Öğrenme oranı, her bir iterasyonda model parametrelerini güncelleme miktarını kontrol eder. Güncellenen ağırlık değerleri ile Lojistik regresyon algoritması tekrar eğitim, tahmin ve kayıp değeri hesaplama aşamalarından geçmektedir. Her bir iterasyonda kayıp değeri ve doğruluk değeri hesaplanmıştır. Belirlenen iterasyon sayısı kadar bu işlemler devam etmektedir. Her iterasyonda hesaplanan doğruluk değerleri karşılaştırılarak en yüksek doğruluk değerinin elde edildiği ağırlık değerleri “TrainResults.txt” dosyasına kayıt edilmiştir. En başarılı sonucu veren ağırlık değerleri test için ayrılan veriler üzerinde test edilmiştir. Test sonucunda karışıklık matrisi (confusion matrix), doğruluk, kesinlik (precision), hassasiyet (recall) ve F1-skor performans metrikleri hesaplanmıştır. Hesaplanan değerler “TestResults.txt” dosyasına kayıt edilmiştir.
@@ -141,28 +141,28 @@ Karışıklık matrisi, sınıflandırma algoritmalarının performansını değ
 Doğruluk değeri, doğru tahminlerin yüzdesel oranını belirtmektedir. Doğruluk değerinin hesaplanma formülü Denklem 2’de görülmektedir.
 <br> 
 <div align="center">
-𝐷𝑜ğ𝑟𝑢𝑙𝑢𝑘= 𝑇𝑃+𝑇𝑁𝑇𝑃+𝑇𝑁+𝐹𝑃+𝐹𝑁∗100      (2)
+𝐷𝑜ğ𝑟𝑢𝑙𝑢𝑘= 𝑇𝑃 + 𝑇𝑁 / 𝑇𝑃 + 𝑇𝑁 + 𝐹𝑃 + 𝐹𝑁 ∗ 100      (2)
 </div>
 <br>
 Kesinlik, pozitif olarak tahmin edilen değerlerin gerçekten kaç tanesinin pozitif olduğunu göstermektedir. Kesinlik değerinin hesaplanma formülü Denklem 3’te görülmektedir. 
 <br>
 <br>
 <div align="center">
-𝐾𝑒𝑠𝑖𝑛𝑙𝑖𝑘= 𝑇𝑃𝑇𝑃+𝐹𝑃       (3)
+𝐾𝑒𝑠𝑖𝑛𝑙𝑖𝑘= 𝑇𝑃 / 𝑇𝑃 + 𝐹𝑃       (3)
 </div>
 <br>
 Hassasiyet ise pozitif olarak tahmin edilmesi gereken işlemlerin ne kadarının pozitif olarak tahmin edildiğini gösteren bir metriktir. Hassasiyet değerinin hesaplanma formülü Denklem 4’te görülmektedir. 
 <br>
 <br>
 <div align="center">
-𝐻𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡= 𝑇𝑃𝑇𝑃+𝐹𝑁     (4)
+𝐻𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡= 𝑇𝑃 / 𝑇𝑃 + 𝐹𝑁     (4)
 </div>
 <br>
 F1-skor değerinin kullanılmasının en temel sebebi eşit dağılmayan veri kümelerinde hatalı bir seçim yapmamaktır. Ayrıca sadece yanlış negatif ya da yanlış pozitif değil tüm hata maliyetlerini de içerecek bir ölçme metriğine ihtiyaç duyulduğu için F1-skor çok önemlidir. F1-skor değeri doğru pozitif, yanlış pozitif ve yanlış negatif değerleri ile hesaplanmaktadır. F1-skor değerinin hesaplanma formülü Denklem 5’te görülmektedir. 
 <br>
 <br>
 <div align="center">
-𝐹1−𝑠𝑘𝑜𝑟=2∗ 𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘∗ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘+ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡       (5)
+𝐹1−𝑠𝑘𝑜𝑟= 2 ∗ (𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘 ∗ ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡 / 𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘 + ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡)       (5)
 </div>
 <br>
 Lojistik regresyon algoritmasının çalıştırılması tamamlandıktan ve sonuçlar elde edildikten sonra Arduino kartı ile sensör bağlantıları gerçekleştirilmiştir. Arduino kartı ve sensör bağlantılarının detaylı gösterimi Şekil 3’te görülmektedir.
