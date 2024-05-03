@@ -1,4 +1,4 @@
-# Lojistik Regresyon ile Yangın Alarm Sistemi Oluşturulması
+# LOJİSTİK REGRESYON İLE YANGIN ALARM SİSTEMİ OLUŞTURULMASI
 <h2> 1.	PROJE KONUSU, ÖNEMİ VE HEDEFİ </h2>
 
 Proje, Arduino UNO [1] kartı ile geliştirilmiş bir gömülü sistem çalışmasıdır. Projenin konusu makine öğrenmesi yöntemlerinden biri olan Lojistik regresyon [2] ile yangın tespitinin gerçekleştirilmesidir. Günümüzde teknolojik aletlerin kullanımın artması ile elektronik sistemler daha sık kullanılmaya başlanmıştır. Teknolojik ve elektronik aletlerin kullanımı sırasında yaşanan bazı teknik aksaklıklar yangınlara sebep olabilmektedir. Bunlara ek olarak; mutfaklar, sanayiler, okullar ve hastaneler gibi insanların sıklıkla bulunduğu alanlarda da çeşitli sebeplerden dolayı yangınlar çıkabilmektedir.
@@ -8,7 +8,7 @@ Bu yaklaşımın, yangın riskini daha doğru bir şekilde belirlemesi ve yanlı
 <img src="https://github.com/hediyeorhan/LogisticRegressionWithArduino/assets/59260491/c8fed516-54b9-4b3f-81d6-c438f9cc30cf" alt="image">
 </div>
 <div align="center">
-Şekil 1. Oluşturulan yangın tespit sisteminin Arduino bağlantısı
+<b>Şekil 1.</b> Oluşturulan yangın tespit sisteminin Arduino bağlantısı
 </div>
 <br>
 
@@ -118,9 +118,10 @@ Projenin geliştirilme aşamaları Şekil 2’de bulunan akış şemasında gör
 </div>
 
 <div align="center">
-Şekil 2. Projenin geliştirilme aşamaları - Akış şeması
+<b>Şekil 2.</b> Projenin geliştirilme aşamaları - Akış şeması
 </div>
-
+<br>
+<br>
 Projede öncelikle veri seti araştırılması yapılmıştır. Arduino UNO kartı ile uyumlu sensörlerden okunabilecek veriler ile birlikte kullanılabilecek uygun veri setleri araştırılmıştır. Araştırmalar sonucunda Kaggle sitesi üzerinden yangın alarmı için oluşturulmuş yaklaşık 63 bin adet veriden oluşan ‘Smoke Detection’ [5] adlı veri setinin kullanılmasına karar verilmiştir. Veri seti etiket sütunu hariç 14 farklı özellikten oluşmaktadır. Sensörler yardımı ile hangi verilerin elde edilebileceğine karar verilmiştir ve kullanılmayacak olan özellik sütunları veri setinden çıkarılmıştır. Veri seti etiketleri “1” ve “0” olmak üzere iki sınıftan oluşmaktadır. “1” sınıfına ait veri sayısı 44.760, “0” sınıfına ait veri sayısı ise 17.871’dir. Algoritma eğitiminde veri setinde dengesizlik olmaması için veri seti karıştırılarak her iki sınıftan da 17.871 adet veri kullanılmıştır. Toplamda 35.742 adet veri kullanılmıştır. Bu verilerin %80’i eğitim verisi, %20’si test verisi olarak kullanılmak üzere ayrılmıştır. Eğitim ve test verileri dosyalara kayıt edilmiştir.
 
 Veri setinin ön işleme adımları tamamlandıktan sonra Lojistik regresyon algoritması C programlama dilli kullanılarak kodlanmıştır. Lojistik regresyon, bir sınıflandırma algoritmasıdır. İstatistik ve makine öğrenimi alanlarında sıkça kullanılan bir yöntemdir. Genellikle ikili sınıflandırma problemlerinde kullanılmaktadır. Lojistik regresyon, bağımsız değişkenlerin bir kombinasyonunu kullanarak bir bağımlı değişkenin olasılığını tahmin etmek için kullanılmaktadır. Lojistik regresyon, yüksek doğruluk ve yorumlanabilirlik sağlamaktadır, bu nedenle özellikle tıp, ekonomi, pazarlama ve diğer birçok alanda kullanılmaktadır. Lojistik regresyon sınıflandırma problemlerinde aktivasyon fonksiyonu olarak “sigmoid” kullanmaktadır. Aktivasyon fonksiyonu, bir yapay sinir ağı veya derin öğrenme modelinde bir nöronun çıktısını belirlemek için kullanılan bir matematiksel işlemdir. Sigmoid aktivasyon fonksiyonu verileri 0 ve 1 arasında sıkıştırmaktadır. Sigmoid fonksiyonundan elde edilen çıktı belirlenen eşit değerine göre “0” ve “1” sınıfına atanmaktadır. Sigmoid aktivasyon fonksiyonunun hesaplanma formülü Denklem 1’de görülmektedir. 
@@ -171,9 +172,10 @@ Lojistik regresyon algoritmasının çalıştırılması tamamlandıktan ve sonu
 </div>
 
 <div align="center">
-Şekil 3. Arduino kartı ve sensör bağlantıları
+<b>Şekil 3.</b> Arduino kartı ve sensör bağlantıları
 </div>
-
+<br>
+<br>
 En başarılı sonucun elde edildiği ağırlık değerleri Arduino koduna bir dizi olarak tanımlanmıştır. Arduino kodu içerisinde sigmoid aktivasyon fonksiyonu ve Lojistik regresyon kodlamaları yapılmıştır. Sonrasında kullanılan sensörlerden veriler okunarak, tanımlanan ağırlık değerleri ile tahmin işlemi gerçekleştirilmiştir. Tahmin işleminin sürekli olmaması için Arduino koduna Timer kesmesi eklenmiştir. 5 dakika aralıklar ile sensörden gelen verilerden tahmin işlemi gerçekleştirilmektedir. Gerçekleştirilen tahmin işlemine göre “1” sınıfı yangın riskini temsil etmektedir bu sebeple kırmızı led ve buzzer çalışmaktadır. “0” sınıfı tahmin edildiğinde ise risk yok anlamında yeşil led çalışmaktadır. Sistemin çalışması Şekil 4’te görülmektedir.
 <div align="center">
 <table>
@@ -187,10 +189,17 @@ En başarılı sonucun elde edildiği ağırlık değerleri Arduino koduna bir d
     </tr>
 </table>
 </div>
+<div align="center">
+<b>Şekil 4.</b> Sistemin çalışma örneği
+</div>
 
 <h2> 3.	DENEYSEL SONUÇLAR </h2>
 
 Lojistik regresyon algoritması 1000 iterasyon ve 0.05 öğrenme oranı ile çalıştırılmıştır. Gerçekleştirilen sınıflandırma eğitiminde, eğitim sürecinde elde edilen maksimum doğruluk değeri %85.30 ve kayıp değeri (mean squared error – mse) 0.146989’dur. En başarılı sonuç 878’inci iterasyonda elde edilmiştir. En başarılı sonucu veren ağırlık değerleri test verilerinin tahmininde kullanılmıştır. Test verilerinden elde edilen performans metrikleri Tablo 1’de görülmektedir.
+
+<div align="center">
+<b>Tablo 1. </b> Test verilerinden elde edilen performans metrikleri
+</div>
 <div align="center">
 <table>
     <tr>
@@ -198,10 +207,10 @@ Lojistik regresyon algoritması 1000 iterasyon ve 0.05 öğrenme oranı ile çal
             <b>Doğruluk (%)</b>
         </td>
         <td>
-            <b>Kayıp**</b>
+            <b>Kayıp</b>
         </td>
                 <td>
-            <b>Kesinlik (%)**</b>
+            <b>Kesinlik (%)</b>
         </td>
         <td>
             <b>Hassasiyet (%)</b>
