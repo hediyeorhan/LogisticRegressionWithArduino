@@ -124,10 +124,11 @@ Projenin geliştirilme aşamaları Şekil 2’de bulunan akış şemasında gör
 Projede öncelikle veri seti araştırılması yapılmıştır. Arduino UNO kartı ile uyumlu sensörlerden okunabilecek veriler ile birlikte kullanılabilecek uygun veri setleri araştırılmıştır. Araştırmalar sonucunda Kaggle sitesi üzerinden yangın alarmı için oluşturulmuş yaklaşık 63 bin adet veriden oluşan ‘Smoke Detection’ [5] adlı veri setinin kullanılmasına karar verilmiştir. Veri seti etiket sütunu hariç 14 farklı özellikten oluşmaktadır. Sensörler yardımı ile hangi verilerin elde edilebileceğine karar verilmiştir ve kullanılmayacak olan özellik sütunları veri setinden çıkarılmıştır. Veri seti etiketleri “1” ve “0” olmak üzere iki sınıftan oluşmaktadır. “1” sınıfına ait veri sayısı 44.760, “0” sınıfına ait veri sayısı ise 17.871’dir. Algoritma eğitiminde veri setinde dengesizlik olmaması için veri seti karıştırılarak her iki sınıftan da 17.871 adet veri kullanılmıştır. Toplamda 35.742 adet veri kullanılmıştır. Bu verilerin %80’i eğitim verisi, %20’si test verisi olarak kullanılmak üzere ayrılmıştır. Eğitim ve test verileri dosyalara kayıt edilmiştir.
 
 Veri setinin ön işleme adımları tamamlandıktan sonra Lojistik regresyon algoritması C programlama dilli kullanılarak kodlanmıştır. Lojistik regresyon, bir sınıflandırma algoritmasıdır. İstatistik ve makine öğrenimi alanlarında sıkça kullanılan bir yöntemdir. Genellikle ikili sınıflandırma problemlerinde kullanılmaktadır. Lojistik regresyon, bağımsız değişkenlerin bir kombinasyonunu kullanarak bir bağımlı değişkenin olasılığını tahmin etmek için kullanılmaktadır. Lojistik regresyon, yüksek doğruluk ve yorumlanabilirlik sağlamaktadır, bu nedenle özellikle tıp, ekonomi, pazarlama ve diğer birçok alanda kullanılmaktadır. Lojistik regresyon sınıflandırma problemlerinde aktivasyon fonksiyonu olarak “sigmoid” kullanmaktadır. Aktivasyon fonksiyonu, bir yapay sinir ağı veya derin öğrenme modelinde bir nöronun çıktısını belirlemek için kullanılan bir matematiksel işlemdir. Sigmoid aktivasyon fonksiyonu verileri 0 ve 1 arasında sıkıştırmaktadır. Sigmoid fonksiyonundan elde edilen çıktı belirlenen eşit değerine göre “0” ve “1” sınıfına atanmaktadır. Sigmoid aktivasyon fonksiyonunun hesaplanma formülü Denklem 1’de görülmektedir. 
-
+<br>
 <div align="center">
 𝑆(𝑥)= 11+ 𝑒−𝑥       (1)
 </div>
+<br>
 Lojistik regresyonda, veri setindeki girdiler başlangıçta rastgele olarak tanımlanan ağırlık değerleri ile çarpılmaktadır. Her bir girdi ağırlık değerleri ile çarpılarak toplanmaktadır. Elde edilen bu toplam sigmoid fonksiyonuna gönderilmektedir. Sigmoid fonksiyonundan gelen sonuca göre sınıflandırma işlemi gerçekleşmektedir. Sonrasında elde edilen tahmin sonucu ve gerçek etiket değeri ile bir kayıp değeri hesaplanmaktadır. Hesaplanan kayıp değeri öğrenme oranı ve veri ile çarpılarak ağırlık değerleri güncellenmektedir. Öğrenme oranı, bir makine öğrenimi algoritmasında kullanılan bir hiper parametredir ve modelin ne kadar hızlı veya yavaş öğrenmesi gerektiğini belirlemektedir. Öğrenme oranı, her bir iterasyonda model parametrelerini güncelleme miktarını kontrol eder. Güncellenen ağırlık değerleri ile Lojistik regresyon algoritması tekrar eğitim, tahmin ve kayıp değeri hesaplama aşamalarından geçmektedir. Her bir iterasyonda kayıp değeri ve doğruluk değeri hesaplanmıştır. Belirlenen iterasyon sayısı kadar bu işlemler devam etmektedir. Her iterasyonda hesaplanan doğruluk değerleri karşılaştırılarak en yüksek doğruluk değerinin elde edildiği ağırlık değerleri “TrainResults.txt” dosyasına kayıt edilmiştir. En başarılı sonucu veren ağırlık değerleri test için ayrılan veriler üzerinde test edilmiştir. Test sonucunda karışıklık matrisi (confusion matrix), doğruluk, kesinlik (precision), hassasiyet (recall) ve F1-skor performans metrikleri hesaplanmıştır. Hesaplanan değerler “TestResults.txt” dosyasına kayıt edilmiştir.
 
 Karışıklık matrisi, sınıflandırma algoritmalarının performansını değerlendirmek için kullanılan bir metriktir. Bu matris, tahmin edilen sınıfların gerçek sınıflarla karşılaştırılmasını sağlar. Karışıklık matrisi True Positive (TP), True Negative (TN), False Positive (FP) ve False Negative (FN) değerlerinden oluşmaktadır.
@@ -144,17 +145,20 @@ Doğruluk değeri, doğru tahminlerin yüzdesel oranını belirtmektedir. Doğru
 <br>
 Kesinlik, pozitif olarak tahmin edilen değerlerin gerçekten kaç tanesinin pozitif olduğunu göstermektedir. Kesinlik değerinin hesaplanma formülü Denklem 3’te görülmektedir. 
 <br>
+<br>
 <div align="center">
 𝐾𝑒𝑠𝑖𝑛𝑙𝑖𝑘= 𝑇𝑃𝑇𝑃+𝐹𝑃       (3)
 </div>
 <br>
 Hassasiyet ise pozitif olarak tahmin edilmesi gereken işlemlerin ne kadarının pozitif olarak tahmin edildiğini gösteren bir metriktir. Hassasiyet değerinin hesaplanma formülü Denklem 4’te görülmektedir. 
 <br>
+<br>
 <div align="center">
 𝐻𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡= 𝑇𝑃𝑇𝑃+𝐹𝑁     (4)
 </div>
 <br>
 F1-skor değerinin kullanılmasının en temel sebebi eşit dağılmayan veri kümelerinde hatalı bir seçim yapmamaktır. Ayrıca sadece yanlış negatif ya da yanlış pozitif değil tüm hata maliyetlerini de içerecek bir ölçme metriğine ihtiyaç duyulduğu için F1-skor çok önemlidir. F1-skor değeri doğru pozitif, yanlış pozitif ve yanlış negatif değerleri ile hesaplanmaktadır. F1-skor değerinin hesaplanma formülü Denklem 5’te görülmektedir. 
+<br>
 <br>
 <div align="center">
 𝐹1−𝑠𝑘𝑜𝑟=2∗ 𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘∗ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡𝑘𝑒𝑠𝑖𝑛𝑙𝑖𝑘+ℎ𝑎𝑠𝑠𝑎𝑠𝑖𝑦𝑒𝑡       (5)
@@ -191,19 +195,19 @@ Lojistik regresyon algoritması 1000 iterasyon ve 0.05 öğrenme oranı ile çal
 <table>
     <tr>
         <td>
-            **Doğruluk (%)**
+            <b>Doğruluk (%)</b>
         </td>
         <td>
-            **Kayıp**
+            <b>Kayıp**</b>
         </td>
                 <td>
-            **Kesinlik (%)**
+            <b>Kesinlik (%)**</b>
         </td>
         <td>
-            **Hassasiyet (%)**
+            <b>Hassasiyet (%)</b>
         </td>
                 <td>
-            **F1-skor (%)**
+            <b>F1-skor (%)</b>
         </td>
     </tr>
             <td>
