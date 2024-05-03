@@ -246,7 +246,7 @@ Test verileri kullanılarak hesaplanan karışıklık matrisi verileri görselle
 </div>
 
 <div align="center">
-Şekil 5. Karışıklık matrisi
+<b>Şekil 5.</b> Karışıklık matrisi
 </div>
 
 <h2> 4.	SONUÇ </h2>
